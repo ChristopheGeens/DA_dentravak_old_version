@@ -37,8 +37,8 @@ public class Order {
         //build
         public Order build(){
             Order order = new Order();
-            //order.xxxxx = this.xxxxx;
-            // ...
+
+            order.sandwiches = this.sandwiches;
 
             return order;
         }
