@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad7c546c-e1b9-4d33-bb24-21e8865503d7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Ingredient.java" afterPath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Ingredient.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Order.java" afterPath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Order.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Sandwich.java" afterPath="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Sandwich.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -104,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ingredient.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Ingredient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Ingredient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
@@ -119,6 +118,16 @@
                 <element signature="e#476#477#0" expanded="true" />
                 <element signature="e#530#531#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="573">
+              <caret line="83" column="46" lean-forward="false" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -502,6 +511,7 @@
         <option value="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Sandwich.java" />
         <option value="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/be/ucll/da/dentravak/model/Ingredient.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -712,12 +722,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541491884841</updated>
-      <workItem from="1541491890629" duration="3566000" />
+      <workItem from="1541491890629" duration="4222000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3566000" />
+    <option name="totallyTimeSpent" value="4222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -853,6 +863,14 @@
             <element signature="e#476#477#0" expanded="true" />
             <element signature="e#530#531#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="83" column="46" lean-forward="false" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
