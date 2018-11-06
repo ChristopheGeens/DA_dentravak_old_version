@@ -9,6 +9,9 @@ public class Sandwich {
     private List<Ingredient> ingredients;
     private double price;
 
+    public Sandwich(){
+
+    }
 
     public String getName() {
         return name;
