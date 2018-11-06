@@ -1,10 +1,21 @@
 package be.ucll.da.dentravak.model;
 
+import be.ucll.da.dentravak.repository.JpaJsonConverter;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+@Entity
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private UUID id;
+    @Lob
+    @Convert(converter = JpaJsonConverter.class)
     private List<Sandwich> sandwiches;
 
     public Order(){
