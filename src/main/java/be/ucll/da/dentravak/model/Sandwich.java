@@ -42,7 +42,7 @@ public class Sandwich {
 
         private SandwichBuilder(){}
 
-        public static SandwichBuilder anOrder(){
+        public static SandwichBuilder aSandwich(){
             return new SandwichBuilder();
         }
 

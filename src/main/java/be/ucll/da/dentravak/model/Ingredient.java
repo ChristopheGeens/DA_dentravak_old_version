@@ -17,26 +17,26 @@ public class Ingredient {
 
     public static class IngredientBuilder{
 
-        private List<Sandwich> sandwiches = new ArrayList<Sandwich>();
+        private String name;
 
         private IngredientBuilder(){}
 
-        public static IngredientBuilder anOrder(){
+        public static IngredientBuilder anIngredient(){
             return new IngredientBuilder();
         }
 
         //SETTERS (WITH ipv SET)
-        public IngredientBuilder withSandwiches(List<Sandwich> sandwiches){
-            this.sandwiches = sandwiches; return this;
+        public IngredientBuilder withName(String name){
+            this.name = name; return this;
         }
 
         //build
-        public Order build(){
-            Order order = new Order();
+        public Ingredient build(){
+            Ingredient ingredient = new Ingredient();
 
-            order.sandwiches = this.sandwiches;
+            ingredient.name = this.name;
 
-            return order;
+            return ingredient;
         }
     }
 }
