@@ -46,31 +46,31 @@ public class OrderItem {
     }
 
 
-    public static class OrderBuilder {
+    public static class OrderItemBuilder {
 
         private String sandwichName;
         private int quantity;
         private BigDecimal price;
 
-        private OrderBuilder() {
+        private OrderItemBuilder() {
         }
 
-        public static OrderBuilder anOrder() {
-            return new OrderBuilder();
+        public static OrderItemBuilder anOrderItem() {
+            return new OrderItemBuilder();
         }
 
         //SETTERS (WITH ipv SET)
-        public OrderBuilder withSandwichName(String sandwichName) {
+        public OrderItemBuilder withSandwichName(String sandwichName) {
             this.sandwichName = sandwichName;
             return this;
         }
 
-        public OrderBuilder withQuantity(int quantity) {
+        public OrderItemBuilder withQuantity(int quantity) {
             this.quantity = quantity;
             return this;
         }
 
-        public OrderBuilder withPrice(BigDecimal price) {
+        public OrderItemBuilder withPrice(BigDecimal price) {
             this.price = price;
             return this;
         }

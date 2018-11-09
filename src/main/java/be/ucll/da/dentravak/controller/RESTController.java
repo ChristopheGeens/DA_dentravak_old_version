@@ -38,9 +38,9 @@ public class RESTController {
 //        Sandwich sandwich = Sandwich.SandwichBuilder.aSandwich().withName("Smos").withIngredients(getIngredients()).withPrice(2.20).build();
 //        Order order = Order.OrderBuilder.anOrder().withSandwiches(Arrays.asList(sandwich)).build();
         List<OrderItem> items = new ArrayList<OrderItem>();
-        items.add(OrderItem.OrderBuilder.anOrder().withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
-        items.add(OrderItem.OrderBuilder.anOrder().withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
-        Order order = Order.OrderBuilder.anOrder().withSandwiches(items).build();
+        items.add(OrderItem.OrderItemBuilder.anOrderItem().withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
+        items.add(OrderItem.OrderItemBuilder.anOrderItem().withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
+        Order order = Order.OrderBuilder.anOrder().withOrderItems(items).build();
         return Arrays.asList(order);
     }
 

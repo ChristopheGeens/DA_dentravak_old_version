@@ -22,6 +22,14 @@ public class Order {
 
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -41,7 +49,7 @@ public class Order {
         }
 
         //SETTERS (WITH ipv SET)
-        public OrderBuilder withSandwiches(List<OrderItem> orderItems){
+        public OrderBuilder withOrderItems(List<OrderItem> orderItems){
             this.orderItems = orderItems; return this;
         }
 
