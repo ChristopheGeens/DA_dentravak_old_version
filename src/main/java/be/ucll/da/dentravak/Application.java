@@ -1,6 +1,8 @@
 package be.ucll.da.dentravak;
 
+import be.ucll.da.dentravak.model.Ingredient;
 import be.ucll.da.dentravak.model.Order;
+import be.ucll.da.dentravak.repository.IngredientRepository;
 import be.ucll.da.dentravak.repository.OrderRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +17,10 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner demo(OrderRepository repository) {
+    public CommandLineRunner demo(IngredientRepository repository) {
         return (args) -> {
             // save a couple of customers
-            repository.save(new Order()); //TODO add orders with builder
+            repository.save(Ingredient.IngredientBuilder.anIngredient().withName("Sla").build());
 
         };
     }
