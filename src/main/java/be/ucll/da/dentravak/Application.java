@@ -1,13 +1,14 @@
 package be.ucll.da.dentravak;
 
-import be.ucll.da.dentravak.model.Ingredient;
-import be.ucll.da.dentravak.model.Order;
-import be.ucll.da.dentravak.repository.IngredientRepository;
+import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.repository.OrderRepository;
+import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.math.BigDecimal;
 
 @SpringBootApplication
 public class Application {
@@ -17,10 +18,12 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner demo(IngredientRepository repository) {
+    public CommandLineRunner demo(SandwichRepository sandwichRepository) {
         return (args) -> {
-            // save a couple of customers
-            repository.save(Ingredient.IngredientBuilder.anIngredient().withName("Sla").build());
+            // save a couple of sandwiches
+            sandwichRepository.save(Sandwich.SandwichBuilder.aSandwich().withName("Smos").withIngredients("Kaas,Hesp,Sla,Tomaat,Ei").withPrice(new BigDecimal("3.20")).build());
+            sandwichRepository.save(Sandwich.SandwichBuilder.aSandwich().withName("Martino").withIngredients("Américain,Ui,Augurk,Martinosaus").withPrice(new BigDecimal("3.20")).build());
+            //repository.save(Ingredient.IngredientBuilder.anIngredient().withName("Sla").build());
 
         };
     }

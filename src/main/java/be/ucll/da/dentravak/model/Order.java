@@ -1,7 +1,7 @@
 package be.ucll.da.dentravak.model;
 
 import be.ucll.da.dentravak.repository.JpaJsonConverter;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,23 +16,23 @@ public class Order {
     private UUID id;
     @Lob
     @Convert(converter = JpaJsonConverter.class)
-    private List<Sandwich> sandwiches;
+    private List<OrderItem> orderItems;
 
     public Order(){
 
     }
 
-    public List<Sandwich> getSandwiches() {
-        return sandwiches;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setSandwiches(List<Sandwich> sandwiches) {
-        this.sandwiches = sandwiches;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public static class OrderBuilder{
 
-        private List<Sandwich> sandwiches = new ArrayList<Sandwich>();
+        private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
         private OrderBuilder(){}
 
@@ -41,15 +41,15 @@ public class Order {
         }
 
         //SETTERS (WITH ipv SET)
-        public OrderBuilder withSandwiches(List<Sandwich> sandwiches){
-            this.sandwiches = sandwiches; return this;
+        public OrderBuilder withSandwiches(List<OrderItem> orderItems){
+            this.orderItems = orderItems; return this;
         }
 
         //build
         public Order build(){
             Order order = new Order();
 
-            order.sandwiches = this.sandwiches;
+            order.orderItems = this.orderItems;
 
             return order;
         }

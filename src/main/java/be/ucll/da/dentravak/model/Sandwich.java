@@ -1,13 +1,24 @@
 package be.ucll.da.dentravak.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+@Entity
 public class Sandwich {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private UUID id;
     private String name;
-    private List<Ingredient> ingredients;
-    private double price;
+    private String ingredients;
+    private BigDecimal price;
 
     public Sandwich(){
 
@@ -21,27 +32,27 @@ public class Sandwich {
         this.name = name;
     }
 
-    public List<Ingredient> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
     public static class SandwichBuilder{
 
         private String name;
-        private List<Ingredient> ingredients;
-        private double price;
+        private String ingredients;
+        private BigDecimal price;
 
         private SandwichBuilder(){}
 
@@ -54,11 +65,11 @@ public class Sandwich {
             this.name = name; return this;
         }
 
-        public SandwichBuilder withIngredients(List<Ingredient> ingredients){
+        public SandwichBuilder withIngredients(String ingredients){
             this.ingredients = ingredients; return this;
         }
 
-        public SandwichBuilder withPrice(double price){
+        public SandwichBuilder withPrice(BigDecimal price){
             this.price = price; return this;
         }
 
