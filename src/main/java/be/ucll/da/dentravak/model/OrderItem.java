@@ -17,6 +17,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
+    private BreadTypeEnum breadType;
     private String sandwichName;
     private int quantity;
     private BigDecimal price;
@@ -45,9 +46,18 @@ public class OrderItem {
         this.price = price;
     }
 
+    public BreadTypeEnum getBreadType() {
+        return breadType;
+    }
+
+    public void setBreadType(BreadTypeEnum breadType) {
+        this.breadType = breadType;
+    }
+
 
     public static class OrderItemBuilder {
 
+        private BreadTypeEnum breadType;
         private String sandwichName;
         private int quantity;
         private BigDecimal price;
@@ -75,10 +85,16 @@ public class OrderItem {
             return this;
         }
 
+        public OrderItemBuilder withBreadType(BreadTypeEnum breadType) {
+            this.breadType = breadType;
+            return this;
+        }
+
         //build
         public OrderItem build() {
             OrderItem orderItem = new OrderItem();
 
+            orderItem.breadType = this.breadType;
             orderItem.sandwichName = this.sandwichName;
             orderItem.quantity = this.quantity;
             orderItem.price = this.price;

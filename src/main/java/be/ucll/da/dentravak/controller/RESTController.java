@@ -1,5 +1,6 @@
 package be.ucll.da.dentravak.controller;
 
+import be.ucll.da.dentravak.model.BreadTypeEnum;
 import be.ucll.da.dentravak.model.Order;
 import be.ucll.da.dentravak.model.OrderItem;
 import be.ucll.da.dentravak.model.Sandwich;
@@ -38,8 +39,8 @@ public class RESTController {
 //        Sandwich sandwich = Sandwich.SandwichBuilder.aSandwich().withName("Smos").withIngredients(getIngredients()).withPrice(2.20).build();
 //        Order order = Order.OrderBuilder.anOrder().withSandwiches(Arrays.asList(sandwich)).build();
         List<OrderItem> items = new ArrayList<OrderItem>();
-        items.add(OrderItem.OrderItemBuilder.anOrderItem().withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
-        items.add(OrderItem.OrderItemBuilder.anOrderItem().withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
+        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.TURKISHBREAD).withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
+        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.WRAP).withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
         Order order = Order.OrderBuilder.anOrder().withOrderItems(items).build();
         return Arrays.asList(order);
     }
