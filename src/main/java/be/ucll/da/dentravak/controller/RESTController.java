@@ -2,7 +2,7 @@ package be.ucll.da.dentravak.controller;
 
 import be.ucll.da.dentravak.model.SandwichOrder;
 import be.ucll.da.dentravak.model.Sandwich;
-import be.ucll.da.dentravak.repository.OrderRepository;
+import be.ucll.da.dentravak.repository.SandwichOrderRepository;
 import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,12 @@ import java.util.stream.StreamSupport;
 public class RESTController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private SandwichOrderRepository sandwichOrderRepository;
     @Autowired
     private SandwichRepository sandwichRepository;
 
-    public RESTController(OrderRepository orderRepository, SandwichRepository sandwichRepository){
-        this.orderRepository = orderRepository;
+    public RESTController(SandwichOrderRepository sandwichOrderRepository, SandwichRepository sandwichRepository){
+        this.sandwichOrderRepository = sandwichOrderRepository;
         this.sandwichRepository = sandwichRepository;
     }
 
@@ -37,7 +37,12 @@ public class RESTController {
 //        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.WRAP).withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
 //        SandwichOrder order = SandwichOrder.OrderBuilder.anOrder().withOrderItems(items).build();
 //        return Arrays.asList(order);
-        return (List<SandwichOrder>) orderRepository.findAll();
+        return (List<SandwichOrder>) sandwichOrderRepository.findAll();
+    }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
+    public void addOrder(@RequestBody SandwichOrder sandwichOrder){
+        sandwichOrderRepository.save(sandwichOrder);
     }
 
     @RequestMapping("/ingredients")
@@ -60,23 +65,25 @@ public class RESTController {
 
     }
 
-    @RequestMapping(value = "/sandwiches", method = RequestMethod.POST)
-    public void addSandwich(@RequestBody Sandwich sandwich) {
+    @RequestMapping(value = "/sandwich", method = RequestMethod.POST)
+    public Sandwich addSandwich(@RequestBody Sandwich sandwich) {
         sandwichRepository.save(sandwich);
+        return sandwich;
     }
 
-    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sandwich/{id}", method = RequestMethod.GET)
     public Optional<Sandwich> showSandwich(@PathVariable UUID id) {
         return sandwichRepository.findById(id);
     }
 
-    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.PUT)
-    public void editSandwich(@PathVariable UUID id, @RequestBody Sandwich sandwich) {
+    @RequestMapping(value = "/sandwich/{id}", method = RequestMethod.PUT)
+    public Sandwich editSandwich(@PathVariable UUID id, @RequestBody Sandwich sandwich) {
         System.out.println("UPDATE method");
         if(id.equals(sandwich.getId())){
             System.out.println("ID matches");
             sandwichRepository.save(sandwich);
         }
+        return sandwich;
     }
 
     @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.DELETE)

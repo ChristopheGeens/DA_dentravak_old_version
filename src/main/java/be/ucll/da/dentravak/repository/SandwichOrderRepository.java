@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface OrderRepository extends CrudRepository<SandwichOrder,UUID> {
+public interface SandwichOrderRepository extends CrudRepository<SandwichOrder,UUID> {
 
 
 }
