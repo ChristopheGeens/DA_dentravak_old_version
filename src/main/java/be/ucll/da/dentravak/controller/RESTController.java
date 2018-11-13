@@ -7,7 +7,9 @@ import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.repository.OrderRepository;
 import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
@@ -63,8 +65,11 @@ public class RESTController {
         return (List<Sandwich>) StreamSupport.stream(sandwichRepository.findAll().spliterator(),false)
                 .collect(Collectors.toList());
 
-//        Sandwich sandwich = Sandwich.SandwichBuilder.aSandwich().withName("Smos").withIngredients(getIngredients()).withPrice(2.20).build();
-//        Order order = Order.OrderBuilder.anOrder().withSandwiches(Arrays.asList(sandwich)).build();
-//        return Arrays.asList(order);
+    }
+
+    @RequestMapping(value = "/sandwiches", method = RequestMethod.POST)
+    public void saveSandwiches(@RequestBody Sandwich sandwich) {
+        sandwichRepository.save(sandwich);
+
     }
 }
