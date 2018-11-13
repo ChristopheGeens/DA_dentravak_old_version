@@ -22,6 +22,10 @@ public class OrderItem {
     private int quantity;
     private BigDecimal price;
 
+    public OrderItem(){
+        
+    }
+
     public String getSandwichName() {
         return sandwichName;
     }

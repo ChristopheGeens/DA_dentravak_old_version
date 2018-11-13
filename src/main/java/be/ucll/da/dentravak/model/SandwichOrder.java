@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Order {
+public class SandwichOrder {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -18,7 +18,7 @@ public class Order {
     @Convert(converter = JpaJsonConverter.class)
     private List<OrderItem> orderItems;
 
-    public Order(){
+    public SandwichOrder(){
 
     }
 
@@ -38,28 +38,28 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    public static class OrderBuilder{
+    public static class SandwichOrderBuilder{
 
         private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
-        private OrderBuilder(){}
+        private SandwichOrderBuilder(){}
 
-        public static OrderBuilder anOrder(){
-            return new OrderBuilder();
+        public static SandwichOrderBuilder anOrder(){
+            return new SandwichOrderBuilder();
         }
 
         //SETTERS (WITH ipv SET)
-        public OrderBuilder withOrderItems(List<OrderItem> orderItems){
+        public SandwichOrderBuilder withOrderItems(List<OrderItem> orderItems){
             this.orderItems = orderItems; return this;
         }
 
         //build
-        public Order build(){
-            Order order = new Order();
+        public SandwichOrder build(){
+            SandwichOrder sandwichOrder = new SandwichOrder();
 
-            order.orderItems = this.orderItems;
+            sandwichOrder.orderItems = this.orderItems;
 
-            return order;
+            return sandwichOrder;
         }
     }
 }

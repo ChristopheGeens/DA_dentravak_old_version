@@ -1,15 +1,12 @@
 package be.ucll.da.dentravak.controller;
 
-import be.ucll.da.dentravak.model.BreadTypeEnum;
-import be.ucll.da.dentravak.model.Order;
-import be.ucll.da.dentravak.model.OrderItem;
+import be.ucll.da.dentravak.model.SandwichOrder;
 import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.repository.OrderRepository;
 import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -32,14 +29,15 @@ public class RESTController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/orders")
-    public List<Order> getOrders() {
+    public List<SandwichOrder> getOrders() {
 //        Sandwich sandwich = Sandwich.SandwichBuilder.aSandwich().withName("Smos").withIngredients(getIngredients()).withPrice(2.20).build();
-//        Order order = Order.OrderBuilder.anOrder().withSandwiches(Arrays.asList(sandwich)).build();
-        List<OrderItem> items = new ArrayList<OrderItem>();
-        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.TURKISHBREAD).withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
-        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.WRAP).withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
-        Order order = Order.OrderBuilder.anOrder().withOrderItems(items).build();
-        return Arrays.asList(order);
+//        SandwichOrder order = SandwichOrder.OrderBuilder.anOrder().withSandwiches(Arrays.asList(sandwich)).build();
+//        List<OrderItem> items = new ArrayList<OrderItem>();
+//        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.TURKISHBREAD).withSandwichName("Martino").withQuantity(4).withPrice(new BigDecimal("12.80")).build());
+//        items.add(OrderItem.OrderItemBuilder.anOrderItem().withBreadType(BreadTypeEnum.WRAP).withSandwichName("Smos").withQuantity(2).withPrice(new BigDecimal("6.40")).build());
+//        SandwichOrder order = SandwichOrder.OrderBuilder.anOrder().withOrderItems(items).build();
+//        return Arrays.asList(order);
+        return (List<SandwichOrder>) orderRepository.findAll();
     }
 
     @RequestMapping("/ingredients")

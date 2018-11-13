@@ -1,12 +1,11 @@
 package be.ucll.da.dentravak.repository;
 
-import be.ucll.da.dentravak.model.Order;
+import be.ucll.da.dentravak.model.SandwichOrder;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Optional;
 import java.util.UUID;
 
-public interface OrderRepository extends CrudRepository<Order,UUID> {
+public interface OrderRepository extends CrudRepository<SandwichOrder,UUID> {
 
 
 }
