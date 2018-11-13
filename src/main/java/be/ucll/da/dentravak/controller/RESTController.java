@@ -7,15 +7,10 @@ import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.repository.OrderRepository;
 import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -68,8 +63,29 @@ public class RESTController {
     }
 
     @RequestMapping(value = "/sandwiches", method = RequestMethod.POST)
-    public void saveSandwiches(@RequestBody Sandwich sandwich) {
+    public void addSandwich(@RequestBody Sandwich sandwich) {
         sandwichRepository.save(sandwich);
-
     }
+
+    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.GET)
+    public Optional<Sandwich> showSandwich(@PathVariable UUID id) {
+        return sandwichRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.PUT)
+    public void editSandwich(@PathVariable UUID id, @RequestBody Sandwich sandwich) {
+        System.out.println("UPDATE method");
+        if(id.equals(sandwich.getId())){
+            System.out.println("ID matches");
+            sandwichRepository.save(sandwich);
+        }
+    }
+
+    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.DELETE)
+    public void deleteSandwich(@PathVariable UUID id) {
+        System.out.println("DELETE method");
+        sandwichRepository.deleteById(id);
+    }
+
+
 }
