@@ -40,21 +40,24 @@ public class RESTController {
         return (List<SandwichOrder>) sandwichOrderRepository.findAll();
     }
 
-    @RequestMapping(value = "/orders", method = RequestMethod.POST)
-    public void addOrder(@RequestBody SandwichOrder sandwichOrder){
+    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    public SandwichOrder addSandwichOrder(@RequestBody SandwichOrder sandwichOrder){
         sandwichOrderRepository.save(sandwichOrder);
+        return sandwichOrder;
+    }
+
+    @RequestMapping(value = "/order/{id}", method = RequestMethod.GET)
+    public Optional<SandwichOrder> showSandwichOrder(@PathVariable UUID id){
+        return sandwichOrderRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/order/{id}", method = RequestMethod.DELETE)
+    public void deleteSandwichOrder(@PathVariable UUID id){
+        sandwichOrderRepository.deleteById(id);
     }
 
     @RequestMapping("/ingredients")
     public List<String> getIngredients() {
-
-//            return StreamSupport.stream(ingrdientRepository.findAll().spliterator(),false)
-//                    .map(ingredient -> (ingredient.setName("")))
-//                    .collect(Collectors.toList());
-
-
-//        Ingredient sla = Ingredient.IngredientBuilder.anIngredient().withName("Sla").build();
-//        Ingredient tomaat = Ingredient.IngredientBuilder.anIngredient().withName("Tomaat").build();
         return Arrays.asList(null);
     }
 
@@ -78,9 +81,7 @@ public class RESTController {
 
     @RequestMapping(value = "/sandwich/{id}", method = RequestMethod.PUT)
     public Sandwich editSandwich(@PathVariable UUID id, @RequestBody Sandwich sandwich) {
-        System.out.println("UPDATE method");
         if(id.equals(sandwich.getId())){
-            System.out.println("ID matches");
             sandwichRepository.save(sandwich);
         }
         return sandwich;
@@ -88,7 +89,6 @@ public class RESTController {
 
     @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.DELETE)
     public void deleteSandwich(@PathVariable UUID id) {
-        System.out.println("DELETE method");
         sandwichRepository.deleteById(id);
     }
 
