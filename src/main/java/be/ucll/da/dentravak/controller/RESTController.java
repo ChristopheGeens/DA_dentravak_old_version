@@ -30,7 +30,7 @@ public class RESTController {
         return (List<SandwichOrder>) sandwichOrderRepository.findAll();
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
     public SandwichOrder addSandwichOrder(@RequestBody SandwichOrder sandwichOrder){
         sandwichOrderRepository.save(sandwichOrder);
         return sandwichOrder;
@@ -58,18 +58,18 @@ public class RESTController {
 
     }
 
-    @RequestMapping(value = "/sandwich", method = RequestMethod.POST)
+    @RequestMapping(value = "/sandwiches", method = RequestMethod.POST)
     public Sandwich addSandwich(@RequestBody Sandwich sandwich) {
         sandwichRepository.save(sandwich);
         return sandwich;
     }
 
-    @RequestMapping(value = "/sandwich/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.GET)
     public Optional<Sandwich> showSandwich(@PathVariable UUID id) {
         return sandwichRepository.findById(id);
     }
 
-    @RequestMapping(value = "/sandwich/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/sandwiches/{id}", method = RequestMethod.PUT)
     public Sandwich editSandwich(@PathVariable UUID id, @RequestBody Sandwich sandwich) {
         if(id.equals(sandwich.getId())){
             sandwichRepository.save(sandwich);

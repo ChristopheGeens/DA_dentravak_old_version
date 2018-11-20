@@ -1,4 +1,8 @@
 class DenTravakSandwichList extends HTMLElement {
+    constructor() {
+        super();
+    }
+
     connectedCallback(){
         this.initShadowDom();
         this.showSandwiches();
@@ -6,7 +10,7 @@ class DenTravakSandwichList extends HTMLElement {
     }
 
     initShadowDom(){
-        let shadowRoot = this.attachShadow();
+        let shadowRoot = this.attachShadow('open');
         shadowRoot.innerHTML = this.template;
     }
 

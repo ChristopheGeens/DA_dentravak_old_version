@@ -1,10 +1,15 @@
 package be.ucll.da.dentravak.model;
 
 import be.ucll.da.dentravak.repository.JpaJsonConverter;
+import org.apache.tomcat.jni.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 //import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,12 +19,18 @@ public class SandwichOrder {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
-    @Lob
-    @Convert(converter = JpaJsonConverter.class)
-    private List<OrderItem> orderItems;
+    /*@Lob
+        @Convert(converter = JpaJsonConverter.class)
+        private List<OrderItem> orderItems;*/
+    private UUID sandwichId;
+    private String name;
+    private BreadTypeEnum breadType;
+    private BigDecimal price;
+    private String mobilePhoneNumber;
+    private LocalDateTime creationDate;
 
     public SandwichOrder(){
-
+        this.creationDate = LocalDateTime.now();
     }
 
     public UUID getId() {
@@ -30,17 +41,62 @@ public class SandwichOrder {
         this.id = id;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public UUID getSandwichId() {
+        return sandwichId;
+    }
+
+    public void setSandwichId(UUID sandwichId) {
+        this.sandwichId = sandwichId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BreadTypeEnum getBreadType() {
+        return breadType;
+    }
+
+    public void setBreadType(BreadTypeEnum breadType) {
+        this.breadType = breadType;
+    }
+
+    /*public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
-    }
+    }*/
+
+    public String getMobilePhoneNumber() {return mobilePhoneNumber;}
+
+    public void setMobilePhoneNumber(String mobilePhoneNumber) {this.mobilePhoneNumber = mobilePhoneNumber;}
+
+    public LocalDateTime getCreationDate() {return creationDate;}
+
+    public void setCreationDate(LocalDateTime creationDate) {this.creationDate = creationDate;}
 
     public static class SandwichOrderBuilder{
 
         private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+        //private UUID sandwichId;
+        private String name;
+        private BreadTypeEnum breadType;
+        private String mobilePhoneNumber;
+        private LocalDateTime creationDate;
 
         private SandwichOrderBuilder(){}
 
@@ -49,15 +105,44 @@ public class SandwichOrder {
         }
 
         //SETTERS (WITH ipv SET)
-        public SandwichOrderBuilder withOrderItems(List<OrderItem> orderItems){
+        /*public SandwichOrderBuilder withOrderItems(List<OrderItem> orderItems){
             this.orderItems = orderItems; return this;
+        }*/
+        /*public SandwichOrderBuilder withSandwichId(UUID id) {
+            this.sandwichId = id;
+            return this;
+        }*/
+
+        public SandwichOrderBuilder withSandwichName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public SandwichOrderBuilder withCreationDate(LocalDateTime date) {
+            this.creationDate = date;
+            return this;
+        }
+
+        public SandwichOrderBuilder withBreadType(BreadTypeEnum breadType) {
+            this.breadType = breadType;
+            return this;
+        }
+
+        public SandwichOrderBuilder withMobilePhoneNumber(String number) {
+            this.mobilePhoneNumber = number;
+            return this;
         }
 
         //build
         public SandwichOrder build(){
             SandwichOrder sandwichOrder = new SandwichOrder();
 
-            sandwichOrder.orderItems = this.orderItems;
+            //sandwichOrder.orderItems = this.orderItems;
+            //sandwichOrder.sandwichId = this.sandwichId;
+            sandwichOrder.name = this.name;
+            sandwichOrder.breadType = this.breadType;
+            sandwichOrder.mobilePhoneNumber = this.mobilePhoneNumber;
+            sandwichOrder.creationDate = this.creationDate;
 
             return sandwichOrder;
         }

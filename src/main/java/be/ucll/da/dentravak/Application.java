@@ -12,8 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootApplication
 public class Application {
@@ -34,7 +36,12 @@ public class Application {
             List<OrderItem> orderItems = new ArrayList<OrderItem>();
             orderItems.add(orderItem);
             orderItems.add(orderItem2);
-            sandwichOrderRepository.save(SandwichOrder.SandwichOrderBuilder.anOrder().withOrderItems(orderItems).build());
+            sandwichOrderRepository.save(SandwichOrder.SandwichOrderBuilder.anOrder()
+                    .withSandwichName("Smoske")
+                    .withBreadType(BreadTypeEnum.BOTERHAMMEKES)
+                    .withMobilePhoneNumber("0474776686")
+                    //.withCreationDate(LocalDateTime.now())
+                    .build());
         };
     }
 
