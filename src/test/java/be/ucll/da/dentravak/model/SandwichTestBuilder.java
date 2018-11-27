@@ -16,6 +16,10 @@ public class SandwichTestBuilder {
         return new SandwichTestBuilder();
     }
 
+    public static SandwichTestBuilder aDefaultSandwich(){
+        return new SandwichTestBuilder();
+    }
+
     public SandwichTestBuilder withName(String name) {
         this.name = name;
         return this;

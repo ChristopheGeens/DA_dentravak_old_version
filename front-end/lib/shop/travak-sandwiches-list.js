@@ -4,7 +4,8 @@ class DenTravakSandwichesList extends DenTravakAbstractElement {
 
     connectedCallback() {
         super.connectedCallback();
-        fetch('../api/sandwiches.json')
+        var targetUrl = 'http://localhost:8080/sandwiches'
+        fetch(targetUrl)
             .then(resp => resp.json())
             .then(json => this.updateSandwichesList(json));
     }

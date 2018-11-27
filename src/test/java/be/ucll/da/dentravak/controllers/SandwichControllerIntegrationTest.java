@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static be.ucll.da.dentravak.model.SandwichTestBuilder.aDefaultSandwich;
 import static be.ucll.da.dentravak.model.SandwichTestBuilder.aSandwich;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
@@ -36,7 +37,7 @@ public class SandwichControllerIntegrationTest extends AbstractControllerIntegra
 
     @Test
     public void testPostSandwich() throws JSONException {
-        Sandwich sandwich = aSandwich().withName("Americain").withIngredients("Vlees").withPrice(4.0).build();
+        Sandwich sandwich = aDefaultSandwich().build();
 
         String actualSandwichAsJson = httpPost("/sandwiches", sandwich);
         String expectedSandwichAsJson = "{\"id\":\"${json-unit.ignore}\",\"name\":\"Americain\",\"ingredients\":\"Vlees\",\"price\":4}";
