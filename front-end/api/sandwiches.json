@@ -1,8 +1,8 @@
 [
   {
-    "Name": "Smoske",
-    "Ingredients": "Kaas en hesp",
-    "Price": 3.40
+    "name": "Smoske",
+    "ingredients": "Kaas en hesp",
+    "price": 3.40
   },
   {
     "name": "David",

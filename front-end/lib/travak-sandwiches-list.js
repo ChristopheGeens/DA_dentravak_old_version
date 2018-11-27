@@ -39,6 +39,7 @@ class DenTravakSandwichesList extends DenTravakAbstractElement {
 
     getSandwichTemplate(sandwich) {
         return `
+<li>
             <a class="list-group-item">
                 <button type="button" class="btn btn-primary bmd-btn-fab">
                     ${sandwich.name.charAt(0)}
@@ -51,6 +52,7 @@ class DenTravakSandwichesList extends DenTravakAbstractElement {
                     <p class="list-group-item-text">${sandwich.price}</p>
                 </div>
             </a>
+            </li>
         `;
     }
 }
