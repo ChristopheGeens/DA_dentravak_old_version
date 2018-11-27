@@ -1,23 +1,12 @@
-class DenTravakSandwichList extends HTMLElement {
-    constructor() {
-        super();
-    }
+import AbstractDenTravakElement from "./abstract-den-travak-element";
+
+class DenTravakSandwichList extends AbstractDenTravakElement {
 
     connectedCallback(){
-        this.initShadowDom();
-        this.showSandwiches();
-        this.innerHTML = this.template;
-    }
-
-    initShadowDom(){
-        let shadowRoot = this.attachShadow('open');
-        shadowRoot.innerHTML = this.template;
-    }
-
-    fetchAndShowSandwiches(){
-        fetch('/api/sandwiches.json')
+        super.connectedCallback
+        fetch('../api/sandwiches.json')
             .then(resp => resp.json())
-            .then(sandwiches => this.showSandwiches(sandwiches))
+            .then(json => this.showSandwiches(json));
     }
 
     showSandwiches(sandwiches){
