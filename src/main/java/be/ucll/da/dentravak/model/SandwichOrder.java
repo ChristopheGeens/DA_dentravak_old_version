@@ -19,9 +19,6 @@ public class SandwichOrder {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
-    /*@Lob
-        @Convert(converter = JpaJsonConverter.class)
-        private List<OrderItem> orderItems;*/
     private UUID sandwichId;
     private String name;
     private BreadTypeEnum breadType;
@@ -73,14 +70,6 @@ public class SandwichOrder {
         this.breadType = breadType;
     }
 
-    /*public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }*/
-
     public String getMobilePhoneNumber() {return mobilePhoneNumber;}
 
     public void setMobilePhoneNumber(String mobilePhoneNumber) {this.mobilePhoneNumber = mobilePhoneNumber;}
@@ -90,9 +79,7 @@ public class SandwichOrder {
     public void setCreationDate(LocalDateTime creationDate) {this.creationDate = creationDate;}
 
     public static class SandwichOrderBuilder{
-
-        private List<OrderItem> orderItems = new ArrayList<OrderItem>();
-        //private UUID sandwichId;
+        
         private String name;
         private BreadTypeEnum breadType;
         private String mobilePhoneNumber;
@@ -103,15 +90,6 @@ public class SandwichOrder {
         public static SandwichOrderBuilder anOrder(){
             return new SandwichOrderBuilder();
         }
-
-        //SETTERS (WITH ipv SET)
-        /*public SandwichOrderBuilder withOrderItems(List<OrderItem> orderItems){
-            this.orderItems = orderItems; return this;
-        }*/
-        /*public SandwichOrderBuilder withSandwichId(UUID id) {
-            this.sandwichId = id;
-            return this;
-        }*/
 
         public SandwichOrderBuilder withSandwichName(String name) {
             this.name = name;
@@ -137,8 +115,6 @@ public class SandwichOrder {
         public SandwichOrder build(){
             SandwichOrder sandwichOrder = new SandwichOrder();
 
-            //sandwichOrder.orderItems = this.orderItems;
-            //sandwichOrder.sandwichId = this.sandwichId;
             sandwichOrder.name = this.name;
             sandwichOrder.breadType = this.breadType;
             sandwichOrder.mobilePhoneNumber = this.mobilePhoneNumber;
