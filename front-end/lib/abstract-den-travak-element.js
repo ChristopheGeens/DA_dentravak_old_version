@@ -1,11 +1,17 @@
-class AbstractDenTravakElement extends HTMLElement {
+export default class AbstractDenTravakElement extends HTMLElement {
     connectedCall(){
         this.initShadowDom();
     }
 
     initShadowDom(){
+        if (this.shadowRoot) return;
         let shadowRoot = this.attachShadow({mode:'open'})
         shadowRoot.innerHTML = this.template;
+        shadowRoot.insertBefore(document.getElementById('styletemplate').content.cloneNode(true), shadowRoot.childNodes[0]);
+    }
+
+    app() {
+        return document.querySelector('dt-app');
     }
 
     get template(){
@@ -13,6 +19,6 @@ class AbstractDenTravakElement extends HTMLElement {
     }
 
     byId(id){
-
+        return this.shadowRoot.querySelector('#${id}');
     }
 }
