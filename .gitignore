@@ -23,5 +23,4 @@ fabric.properties
 .gradle
 .idea
 gradle
-gradlew
 gradlew.bat
