@@ -20,7 +20,7 @@ class DenTravakSandwichesLogin extends DenTravakAbstractElement {
             <style>
                 @import url("https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.3.0/css/zocial.css");
                 .zocial.google:before {
-                    content: url(/lib/icons/google.svg);
+                    content: url(../icons/google.svg);
                 }
                 .form-group {
                     margin-bottom: 2rem!important;
