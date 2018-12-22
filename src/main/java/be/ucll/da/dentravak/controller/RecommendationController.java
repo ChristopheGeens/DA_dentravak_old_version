@@ -22,11 +22,13 @@ public class RecommendationController {
         this.repository = repository;
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping(value = "/recommend", method = RequestMethod.POST)
     public RecommendedItem recommendItem(@RequestBody RecommendedItem recommendedItem) {
         return repository.save(recommendedItem);
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/recommend/{emailAddress}")
     public Map<Item, Float> getRecommendedItems(@PathVariable String emailAddress) {
         List<RecommendedItem> recommendedItemsByEmailAddress = repository.findAllByEmailAddress(emailAddress);

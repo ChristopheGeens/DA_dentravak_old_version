@@ -21,7 +21,43 @@ class DenTravakSandwichesCheckout extends DenTravakAbstractElement {
     orderSandwich() {
         //todo: call backend via fetch api
         let order = {};
-        order.phoneNumber = '012345677';
+        //order.phoneNumber = '012345677';
+        let phone = this.byId('mobile-phone-number').value;
+        let name = this.sandwich.name;
+        let breadType = this.byId('radioBoterhammekes').value;
+        let type = this.querySelectorAll('input[type=radio]');
+        console.log(type);
+        let labels = this.querySelectorAll('label[for=typeBrood]');
+        console.log(labels);
+        let boterham = this.byId("radioBoterhammekes").checked;
+        let wrap = this.byId("radioWrap").checked;
+        let turksbrood = this.byId("radioTurksBrood").checked;
+        order.name = name;
+        order.mobilePhoneNumber =phone;
+        if(boterham){
+            order.breadType = "Boterhammekes";
+        }
+        else if(wrap){
+            order.breadType = "Wrap";
+        }
+        else if(turksbrood){
+            order.breadType = "Turks Brood";
+        }
+        console.log(order.breadType);
+        console.log(order);
+
+        fetch('http://localhost:8080/orders', {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, cors, *same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(order),
+        })
+            .then(response => response.json())
+            .then(res=>{console.log(res)})
+
         this.app().dispatchEvent(new CustomEvent('order-succeeded', {detail: order}));
     }
 
