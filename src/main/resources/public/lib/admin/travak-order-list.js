@@ -16,6 +16,7 @@ class DenTravakOrderList extends DenTravakAbstractElement {
 
     initEventListeners() {
         this.byId('edit-sandwiches-btn').addEventListener('click', (e) => this.app().showSandwichList());
+        this.byId('print-orders-btn').addEventListener('click', (e) => this.printOrders());
     }
 
     updateOrderList(orders) {
@@ -25,6 +26,26 @@ class DenTravakOrderList extends DenTravakAbstractElement {
             let orderEl = htmlToElement(this.getOrderTemplate(order));
             orderList.appendChild(orderEl);
         });
+    }
+
+    printOrders() {
+        fetch("http://localhost:8080/den-travak/ordersPrint/", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            //.then(data=>{return data.json()})
+            //.then(res=>{console.log(res)})
+            .then(function(response) {
+                response.text().then(function (text) {
+                        let csvContent = "data:text/csv;charset=utf-8,";
+                        var encodedUri = encodeURI(csvContent + text);
+                        window.open(encodedUri, "_blank", 'width=400,height=200');
+                    })
+            })
+        this.app().dispatchEvent(new CustomEvent('print-succeeded', {detail: ""}));
     }
 
     get template() {
@@ -55,6 +76,7 @@ class DenTravakOrderList extends DenTravakAbstractElement {
                 <div class="travak-header">
                     <h4>Den Travak Bestellingen</h4>
                     <button id="edit-sandwiches-btn" type="button" class="btn btn-primary">Bewerk broodjeslijst</button>
+                    <button id="print-orders-btn" type="button" class="btn btn-primary">Print bestellingen</button>
                 </div>
                 <div>
                 <ul id="orders" class="list-group">

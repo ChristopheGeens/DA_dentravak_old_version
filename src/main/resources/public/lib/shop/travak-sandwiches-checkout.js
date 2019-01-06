@@ -19,7 +19,6 @@ class DenTravakSandwichesCheckout extends DenTravakAbstractElement {
     }
 
     orderSandwich() {
-        //todo: call backend via fetch api
         let order = {};
         //order.phoneNumber = '012345677';
         let phone = this.byId('mobile-phone-number').value;
@@ -34,6 +33,7 @@ class DenTravakSandwichesCheckout extends DenTravakAbstractElement {
         let turksbrood = this.byId("radioTurksBrood").checked;
         order.name = name;
         order.mobilePhoneNumber =phone;
+        order.printed =false;
         if(boterham){
             order.breadType = "boterhammekes";
         }

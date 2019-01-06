@@ -1,4 +1,7 @@
 package be.ucll.da.dentravak.controller;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.model.SandwichOrder;
@@ -25,6 +28,29 @@ public class SandwichOrderController {
     @RequestMapping("/orders")
     public Iterable<SandwichOrder> orders() {
         return repository.findAll();
+    }
+
+    @RequestMapping(value = "/ordersPrint", method = RequestMethod.POST)
+    public String ordersPrint() throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(new File("C:\\Users\\Gebruiker\\Desktop\\test.csv"));
+        StringBuilder sb = new StringBuilder();
+        for (SandwichOrder order : repository.findAll()) {
+            sb.append(order.getName());
+            sb.append(",");
+            sb.append(order.getBreadType());
+            sb.append(",");
+            sb.append(order.getPrice());
+            sb.append(",");
+            sb.append(order.getCreationDate());
+            sb.append(",");
+            sb.append(order.getMobilePhoneNumber());
+            sb.append('\n');
+            order.setPrinted(true);
+        }
+        System.out.println(sb.toString());
+        pw.write(sb.toString());
+        pw.close();
+        return sb.toString();
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.POST)

@@ -18,7 +18,6 @@ class DenTravakEditSandwich extends DenTravakAbstractElement {
     }
 
     saveSandwich() {
-        //todo: call backend via fetch api and save sandwich
         if(typeof this.sandwich.id !== 'undefined'){
             console.log("bestaand broodje");
             let name = this.byId('name').value;
@@ -41,7 +40,7 @@ class DenTravakEditSandwich extends DenTravakAbstractElement {
             let name = this.byId('name').value;
             let ingredients = this.byId('ingredients').value;
             let price = this.byId('price').value;
-            fetch("http://localhost:8080/sandwiches/", {
+            fetch("http://localhost:8080/den-travak/sandwiches/", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

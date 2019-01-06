@@ -27,6 +27,7 @@ public class SandwichOrder {
     private String mobilePhoneNumber;
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime creationDate;
+    private boolean printed;
 
     public SandwichOrder(){
         this.creationDate = LocalDateTime.now();
@@ -79,6 +80,10 @@ public class SandwichOrder {
     public LocalDateTime getCreationDate() {return creationDate;}
 
     public void setCreationDate(LocalDateTime creationDate) {this.creationDate = creationDate;}
+
+    public boolean isPrinted() { return printed; }
+
+    public void setPrinted(boolean printed) { this.printed = printed; }
 
     public static class SandwichOrderBuilder{
         
