@@ -40,9 +40,15 @@ class DenTravakOrderList extends DenTravakAbstractElement {
             //.then(res=>{console.log(res)})
             .then(function(response) {
                 response.text().then(function (text) {
-                        let csvContent = "data:text/csv;charset=utf-8,";
-                        var encodedUri = encodeURI(csvContent + text);
-                        window.open(encodedUri, "_blank", 'width=400,height=200');
+                        var pom = document.createElement('a');
+                        var csvContent=text; //here we load our csv data
+                        var blob = new Blob([csvContent],{type: 'text/csv;charset=utf-8;'});
+                        var url = URL.createObjectURL(blob);
+                        pom.href = url;
+                        pom.setAttribute('download', 'orders.csv');
+                        pom.click();
+                        //var encodedUri = encodeURI(csvContent + text);
+                        //window.open(encodedUri, "_blank", 'width=400,height=200');
                     })
             })
         this.app().dispatchEvent(new CustomEvent('print-succeeded', {detail: ""}));
