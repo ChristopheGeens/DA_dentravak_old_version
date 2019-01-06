@@ -32,7 +32,6 @@ public class SandwichOrderController {
 
     @RequestMapping(value = "/ordersPrint", method = RequestMethod.POST)
     public String ordersPrint() throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(new File("C:\\Users\\Gebruiker\\Desktop\\test.csv"));
         StringBuilder sb = new StringBuilder();
         for (SandwichOrder order : repository.findAll()) {
             sb.append(order.getName());
@@ -48,8 +47,6 @@ public class SandwichOrderController {
             order.setPrinted(true);
         }
         System.out.println(sb.toString());
-        pw.write(sb.toString());
-        pw.close();
         return sb.toString();
     }
 
