@@ -25,7 +25,7 @@ class DenTravakEditSandwich extends DenTravakAbstractElement {
             let ingredients = this.byId('ingredients').value;
             let price = this.byId('price').value;
             console.log(this.sandwich.id);
-            fetch("http://localhost:8080/sandwiches/" + this.sandwich.id, {
+            fetch("http://localhost:8080/den-travak/sandwiches/" + this.sandwich.id, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',

@@ -51,7 +51,7 @@ class DenTravakSandwichesCheckout extends DenTravakAbstractElement {
 
         console.log(order);
 
-        fetch('http://localhost:8080/orders', {
+        fetch('http://localhost:8080/den-travak/orders', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
