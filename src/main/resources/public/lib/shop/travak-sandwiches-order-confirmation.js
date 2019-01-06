@@ -16,8 +16,10 @@ class DenTravakSandwichesOrderConfirmation extends DenTravakAbstractElement {
         this.shadowRoot.querySelectorAll('button.score')
             .forEach(scoreBtn => scoreBtn.addEventListener('click', e => {
 
+                console.log(this.order);
+                console.log(this.order.mobilePhoneNumber);
                 let recommendedItem = {};
-                recommendedItem.emailAddress = this.order.phoneNumber;
+                recommendedItem.emailAddress = this.order.mobilePhoneNumber;
                 recommendedItem.ratedItem = this.order.sandwichId;
                 recommendedItem.rating = scoreBtn.dataset.score;
 
@@ -32,9 +34,9 @@ class DenTravakSandwichesOrderConfirmation extends DenTravakAbstractElement {
                     },
                     body: JSON.stringify(recommendedItem),
                 })
-                .then(response => response.json())
-                .then(resAsJson => alert('Thanks for the rating'));
-                
+                    .then(response => response.json())
+                    .then(resAsJson => alert('Thanks for the rating'));
+
             }));
     }
 

@@ -1,7 +1,10 @@
 package be.ucll.da.dentravak.controller;
 
+import be.ucll.da.dentravak.model.Item;
 import be.ucll.da.dentravak.model.SandwichOrder;
 import be.ucll.da.dentravak.model.Sandwich;
+import be.ucll.da.dentravak.model.SlopeOne;
+import be.ucll.da.dentravak.repository.RecommendedItemRepository;
 import be.ucll.da.dentravak.repository.SandwichOrderRepository;
 import be.ucll.da.dentravak.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +23,13 @@ public class RESTController {
     private SandwichOrderRepository sandwichOrderRepository;
     @Autowired
     private SandwichRepository sandwichRepository;
+    @Autowired
+    private RecommendedItemRepository recommendedItemRepository;
 
-    public RESTController(SandwichOrderRepository sandwichOrderRepository, SandwichRepository sandwichRepository){
+    public RESTController(SandwichOrderRepository sandwichOrderRepository, SandwichRepository sandwichRepository, RecommendedItemRepository recommendedItemRepository){
         this.sandwichOrderRepository = sandwichOrderRepository;
         this.sandwichRepository = sandwichRepository;
+        this.recommendedItemRepository = recommendedItemRepository;
     }
 
     @RequestMapping("/orders")
@@ -93,5 +99,6 @@ public class RESTController {
     public void deleteSandwich(@PathVariable UUID id) {
         sandwichRepository.deleteById(id);
     }
+
 
 }

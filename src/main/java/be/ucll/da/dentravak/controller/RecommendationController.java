@@ -1,15 +1,16 @@
 package be.ucll.da.dentravak.controller;
 
 import be.ucll.da.dentravak.model.Item;
+import be.ucll.da.dentravak.model.Sandwich;
 import be.ucll.da.dentravak.model.SlopeOne;
 import be.ucll.da.dentravak.model.User;
 import be.ucll.da.dentravak.repository.RecommendedItemRepository;
 
+import be.ucll.da.dentravak.repository.SandwichRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 
@@ -18,8 +19,12 @@ public class RecommendationController {
 
     private RecommendedItemRepository repository;
 
-    public RecommendationController(RecommendedItemRepository repository) {
+    @Autowired
+    private SandwichRepository sandwichRepository;
+
+    public RecommendationController(RecommendedItemRepository repository, SandwichRepository sandwichRepository) {
         this.repository = repository;
+        this.sandwichRepository= sandwichRepository;
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
@@ -69,5 +74,47 @@ public class RecommendationController {
 
         Map<Item, Float> userPrefences = allSavedPreferences.get(user);
         userPrefences.put(new Item(item.getRatedItem()), item.getRating());
+    }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping(value = "/sandwichesByRecommended", method = RequestMethod.GET)
+    public List<Sandwich> sandwichesByRecommendation() {
+
+
+        List<RecommendedItem> recommendedItemsByEmailAddress = repository.findAllByEmailAddress("0498157802");
+        Map<Item, Float> userPrefences = mapToSlopeOneInput(recommendedItemsByEmailAddress);
+
+        SlopeOne slopeOnePredictionMachine = getSlopeOnePredictionMachine();
+        Map<Item,Float> ratings = slopeOnePredictionMachine.predict(userPrefences);
+
+        System.out.println(ratings);
+
+        List<Map.Entry> entries = new ArrayList<>();
+        for (Map.Entry<Item,Float> entry : ratings.entrySet()){
+            entries.add(entry);
+        }
+
+        entries.sort(Comparator.comparing(Map.Entry<Item, Float>::getValue));
+
+        System.out.println(entries);
+
+        List<Sandwich> sandwichesByRatings = new ArrayList<>();
+
+        for (Map.Entry<Item,Float> entry: entries) {
+            sandwichesByRatings.add(sandwichRepository.findById(UUID.fromString(entry.getKey().toString())).get());
+        }
+
+
+//        List<Item> items = new ArrayList(ratings.keySet());
+//        items.forEach(System.out::println);
+//
+//        List<Float> itemRatings = new ArrayList(ratings.values());
+//        itemRatings.forEach(System.out::println);
+
+
+
+        Collections.reverse(sandwichesByRatings);
+
+        return sandwichesByRatings;
     }
 }

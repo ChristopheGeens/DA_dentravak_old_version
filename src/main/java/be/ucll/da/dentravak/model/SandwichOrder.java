@@ -1,6 +1,7 @@
 package be.ucll.da.dentravak.model;
 
 import be.ucll.da.dentravak.repository.JpaJsonConverter;
+import be.ucll.da.dentravak.repository.LocalDateTimeConverter;
 import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 //import org.springframework.data.annotation.Id;
@@ -24,6 +25,7 @@ public class SandwichOrder {
     private BreadTypeEnum breadType;
     private BigDecimal price;
     private String mobilePhoneNumber;
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime creationDate;
 
     public SandwichOrder(){
