@@ -104,6 +104,7 @@ class DenTravakOrderList extends DenTravakAbstractElement {
                 </div>
                 <div class="dt-order-info">
                     <p class="list-group-item-text">${order.price}</p>
+                    <p class="list-group-item-text">${order.printed}</p>
                 </div>
             </a>
         `;

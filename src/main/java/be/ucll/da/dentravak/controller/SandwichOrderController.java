@@ -45,6 +45,8 @@ public class SandwichOrderController {
             sb.append(order.getMobilePhoneNumber());
             sb.append('\n');
             order.setPrinted(true);
+            repository.delete(repository.findById(order.getId()).get());
+            repository.save(order);
         }
         System.out.println(sb.toString());
         return sb.toString();
